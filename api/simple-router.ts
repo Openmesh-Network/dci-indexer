@@ -5,6 +5,7 @@ import { Storage } from "../types/storage.js";
 import { createUserIfNotExists } from "../event-watchers/userHelpers.js";
 import { publicClients } from "../utils/chain-cache.js";
 import { normalizeAddress } from "../utils/normalize-address.js";
+import { replacer } from "../utils/json.js";
 
 function malformedRequest(res: Response, error: string): void {
   res.statusCode = 400;
@@ -19,14 +20,14 @@ export function registerRoutes(app: Express, storage: Storage) {
   app.get(basePath + "reserved", async function (req, res) {
     const reserved = await storage.reserved.get();
 
-    res.end(JSON.stringify(reserved));
+    res.end(JSON.stringify(reserved, replacer));
   });
 
   // Get single user
   app.get(basePath + "waitlisted", async function (req, res) {
     const waitlisted = await storage.waitlisted.get();
 
-    res.end(JSON.stringify(waitlisted));
+    res.end(JSON.stringify(waitlisted, replacer));
   });
 
   // Get single user
@@ -44,7 +45,7 @@ export function registerRoutes(app: Express, storage: Storage) {
       return res.end("User not found");
     }
 
-    res.end(JSON.stringify(user));
+    res.end(JSON.stringify(user, replacer));
   });
 
   // Update the metadata of a user
