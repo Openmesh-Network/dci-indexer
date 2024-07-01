@@ -1,11 +1,9 @@
 export const DCIReserveContract = {
-  address: "0xCE88363cfF2BB5324360cb3f0D6FaCda32924e86",
+  address: "0x34F0124614A1631998385E6B27d89B56024b76c1",
   abi: [
     {
       type: "constructor",
-      inputs: [
-        { name: "totalAvailable", type: "uint256", internalType: "uint256" },
-      ],
+      inputs: [{ name: "totalAvailable", type: "uint256", internalType: "uint256" }],
       stateMutability: "nonpayable",
     },
     {
@@ -61,4 +59,4 @@ export const DCIReserveContract = {
       anonymous: false,
     },
   ],
-} as const
+} as const;

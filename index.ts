@@ -1,7 +1,7 @@
 import { config as loadEnv } from "dotenv";
 import express from "express";
 import storageManager from "node-persist";
-import { sepolia } from "viem/chains";
+import { mainnet } from "viem/chains";
 
 import { registerRoutes } from "./api/simple-router.js";
 import { MultichainWatcher } from "./utils/multichain-watcher.js";
@@ -20,13 +20,9 @@ async function start() {
 
   // Make contract watcher for each chain (using Infura provider)
   const multichainWatcher = new MultichainWatcher([
-    // {
-    //   chain: mainnet,
-    //   rpc: `mainnet.infura.io/ws/v3/${process.env.INFURA_API_KEY}`,
-    // },
     {
-      chain: sepolia,
-      rpc: `sepolia.infura.io/ws/v3/${process.env.INFURA_API_KEY}`,
+      chain: mainnet,
+      rpc: `mainnet.infura.io/ws/v3/${process.env.INFURA_API_KEY}`,
     },
   ]);
 
